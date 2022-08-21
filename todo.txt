@@ -1,0 +1,30 @@
+1. model_inputs--> {"input_ids":,"attention_mask":,"token_inpus_id":, "pos":}
+
+How model is extracting imput_ids from model_inputs dictionary  (idea---> something happening in seq2seqtrainer(trainer))
+
+Q. why we care--> so we get the pos and create its embedding and add it to inputs_embed (created in encoderlayer of bart....)
+
+
+2. Improve speed of pos tagger + mapping to tokens [Done]
+
+
+
+
+--------------
+collater--returns old: dict_keys(['input_ids', 'attention_mask', 'labels'])  catch: dict is in list
+-- returns new dict_keys(['input_ids', 'attention_mask', 'labels', "pos"])
+
+--> next: uncomment pos in model forward--- and create embeddings for pos
+---> put pos as "unk" for padded tokens
+
+---> config load-> model load--print model--see if layer present of pos embeddign
+
+----------------------------training started-----------------------------------------------
+
+1) evaluate-- on test given while train
+2) model.bin got---> get bleu score?
+
+PS: 1. input_ids = (input_ids, pos)
+    2. model --> encoder layer --> extra layer--> weights loading issue
+    3. check args
+    4. logger
